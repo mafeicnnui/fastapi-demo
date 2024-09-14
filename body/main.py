@@ -14,7 +14,7 @@ FastAPI:
 '''
 
 import uvicorn
-from typing import Union
+from typing import Union,Any
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -26,6 +26,8 @@ class Item(BaseModel):
     price: float
     tax: Union[float, None] = None
 
+class Item2(Item):
+    age: int = 20
 
 app = FastAPI()
 
@@ -46,13 +48,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/items/")
+@app.post("/items/",response_model=Item2)
 async def create_item(item: Item):
     return item
 
 @app.get("/items/api/")
 async def query_item():
-    return {"answer":"yes","forced":False,"image":"https://yesno.wtf/assets/yes/8-2f93962e2ab24427df8589131da01a4d.gif"}
+    return {"answer":"no","forced":False,"image":"https://yesno.wtf/assets/yes/8-2f93962e2ab24427df8589131da01a4d.gif"}
 
 if __name__ == "__main__":
     uvicorn.run(app="main:app", host="127.0.0.1", port=8000, reload=True)

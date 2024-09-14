@@ -15,7 +15,7 @@ FastAPI:
 import json
 import uvicorn
 from typing import List, Union
-from  datetime import datetime
+from datetime import datetime
 
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder

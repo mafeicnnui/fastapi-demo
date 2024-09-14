@@ -9,6 +9,7 @@
 pip install "fastapi[all]"
 FastAPI:
  https://fastapi.tiangolo.com/zh/tutorial/path-params/
+ https://fastapi.tiangolo.com/zh/project-generation/
  http://127.0.0.1:8000/docs
 '''
 from fastapi import FastAPI
